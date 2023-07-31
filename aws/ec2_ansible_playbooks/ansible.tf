@@ -7,6 +7,13 @@ locals {
   }
 
   inventory_file_prefix = "${path.root}/.terraform/tmp/.ansible_hosts"
+
+  set_envs_command = join(" ", [
+    "export",
+    join(" ", [
+      for k, v in var.envs : "${k}=${v}"
+    ]),
+  ])
 }
 
 resource "random_id" "tmp" {
@@ -47,6 +54,7 @@ resource "null_resource" "playbooks" {
 
   provisioner "local-exec" {
     command = <<EOT
+      ${local.set_envs_command}
       ansible-playbook ${each.value} \
         -i ${self.triggers.inventory_file} \
         -u ${var.connection.user} \

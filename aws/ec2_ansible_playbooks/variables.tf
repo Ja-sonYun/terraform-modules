@@ -14,3 +14,7 @@ variable "connection" {
 variable "distribution" {
   type = string
 }
+
+variable "envs" {
+  type = map(string)
+}
