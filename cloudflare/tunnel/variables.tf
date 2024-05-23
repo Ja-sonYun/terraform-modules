@@ -24,5 +24,5 @@ variable "allow_overwrite_dns" {
 }
 
 variable "store_example" {
-  type    = string
+  type = string
 }

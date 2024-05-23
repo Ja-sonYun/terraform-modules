@@ -2,7 +2,7 @@ variable "zone_id" {
   type = string
 }
 
-variable "dns_map" {
+variable "dns" {
   type = list(object({
     name  = string
     type  = string
